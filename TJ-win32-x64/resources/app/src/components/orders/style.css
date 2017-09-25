@@ -1,0 +1,55 @@
+.order-direction > i {
+    font-size: 18px;
+}
+
+.order-direction.up > i {
+    color: #4caf50;
+}
+
+.order-direction.down > i {
+    color: #f44336;
+}
+
+.order-edit-button {
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    background-color: transparent;
+    color: #03a9f4;
+    opacity: 0.5;
+    transition: 0.2s;
+}
+
+.order-edit-button:hover {
+    opacity: 1;
+}
+
+.order-remove-button {
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    background-color: transparent;
+    color: #f44336;
+    opacity: 0.5;
+    transition: 0.2s;
+}
+
+.order-remove-button:hover {
+    opacity: 1;
+}
+
+.row-order-success {
+    background-color: rgba(76, 175, 80, 0.3);
+}
+
+.row-order-fail {
+    background-color: rgba(244, 67, 54, 0.3);
+}
+
+.Table td:first-child, .Table th:first-child {
+    padding-left: 10px
+}
+
+.modal-footer-button {
+    margin-right: 15px;
+}

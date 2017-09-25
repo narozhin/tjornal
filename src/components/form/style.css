@@ -1,0 +1,12 @@
+.inline-form-button-wrapper {
+    margin-left: 15px;
+    display: inline-block;
+}
+
+.form-input-comment {
+    height: 400px;
+}
+
+.add-comment-btn > i {
+    margin-right: 5px;
+}

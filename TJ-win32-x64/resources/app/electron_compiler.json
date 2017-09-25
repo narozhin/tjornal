@@ -1,0 +1,15 @@
+{
+    "verifyConfig": false,
+    "archiveOutput": true,
+    "platforms": ["win32"],
+    "uglifyList": [],
+    "ignoreList": [],
+    "versionString":
+    {
+        "CompanyName": "KokocCompany",
+        "FileDescription": "Trading journal application",
+        "OriginalFilename": "TJournal.exe",
+        "ProductName": "TJournal",
+        "InternalName": "TJournal App"
+    }
+}
