@@ -16,9 +16,10 @@ function createWindow () {
 
   mainWindow = new BrowserWindow({
     width: 1400,
-    height: 870,
-    resizable: true,
-    icon: path.join(__dirname, 'favicon.ico')
+    height: 855,
+    resizable: false,
+    icon: path.join(__dirname, 'favicon.ico'),
+    frame: false
   })
   //mainWindow.setMenu(null)
   // and load the index.html of the app.

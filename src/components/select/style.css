@@ -1,0 +1,11 @@
+.select-error select {
+    border-color: red !important;
+}
+
+.select-error select:focus {
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0 2px rgba(255, 0, 0, 0.1) !important;
+}
+
+.field-wrapper {
+    position: relative;
+}

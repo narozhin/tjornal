@@ -1,0 +1,22 @@
+
+.rate-wrapper {
+    text-align: center;
+    font-size: 36px;
+}
+
+.sync-rate {
+    border: 0;
+    outline: 0;
+    background-color: transparent;
+    opacity: 0.3;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.sync-rate:hover {
+    opacity: 1;
+}
+
+.sync-rate > i {
+    font-size: 36px;
+}

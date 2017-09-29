@@ -1,5 +1,5 @@
 import React from 'react'
-import { Table, Glyph, Pagination, Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'elemental'
+import { Table, Glyph, Pagination, Modal, ModalHeader, ModalBody, ModalFooter, Button, FormInput } from 'elemental'
 import style from './style.css'
 
 const prepareComment = (comment) => {
@@ -10,13 +10,15 @@ const prepareComment = (comment) => {
 }
 
 const getRowClassName = (forecast, result) => {
-    if (!forecast) return ''
+    if (!forecast || !result) return 'row-order-unknown'
     return forecast === result ? 'row-order-success' : 'row-order-fail'
 }
 
 const Arrow = ({ direction }) => (
     <span className={`order-direction ${direction}`}>
-        <Glyph icon={`arrow-${direction}`} />
+        { direction && direction.length &&
+            <Glyph icon={`arrow-${direction}`} />
+        }
     </span>
 )
 
@@ -71,13 +73,13 @@ export class Orders extends React.Component {
         })
     }
 
-    handlerClickEdit(_id) {
-        const order = this.props.data.orders.filter( ({ id }) => _id === id )[0]
+    handlerClickEdit(id) {
+        const order = this.props.data.orders.filter( ({ _id }) => _id === id )[0]
         this.props.editOrder(order)
     }
 
-    handlerClickViewComment(id) {
-        const order = this.props.data.orders.filter((order) => order.id === id )[0]
+    handlerClickViewComment(_id) {
+        const order = this.props.data.orders.filter((order) => order._id === _id )[0]
         this.setState({
             showComment: order && order.comment ? order.comment : null
         })
@@ -101,20 +103,19 @@ export class Orders extends React.Component {
         }
     }
 
-    renderRow({ id, date, assets, start, duration, comment, chart, forecast, result, summ }) {
+    renderRow({ _id, date, assets, start, duration, comment, chart, forecast, result, summ }) {
         return (
-            <tr key={id} className={getRowClassName(forecast, result)}>
-                <td>#{id}</td>
+            <tr key={_id} className={getRowClassName(forecast, result)}>
                 <td>{assets}</td>
                 <td>{date} {start}</td>
                 <td>{duration} min.</td>
-                <td><ViewCommentButton id={id} comment={comment} onClick={this.handlerClickViewComment.bind(this)} /></td>
+                <td><ViewCommentButton id={_id} comment={comment} onClick={this.handlerClickViewComment.bind(this)} /></td>
                 <td>{summ}{this.props.currency || ''}</td>
                 <td><Arrow direction={forecast} /></td>
                 <td><Arrow direction={result} /></td>
                 <td>
-                    <EditButton id={id} onClick={this.handlerClickEdit.bind(this)}/>
-                    <RemoveButton id={id} onClick={this.handlerClickRemove.bind(this)}/>
+                    <EditButton id={_id} onClick={this.handlerClickEdit.bind(this)}/>
+                    <RemoveButton id={_id} onClick={this.handlerClickRemove.bind(this)}/>
                 </td>
             </tr>
         )
@@ -129,9 +130,8 @@ export class Orders extends React.Component {
                 }
                 <Table>
                     <colgroup>
-                        <col width="10%" />
                         <col width="10%"/>
-                        <col width="10%"/>
+                        <col width="20%"/>
                         <col width="10%"/>
                         <col width="20%"/>
                         <col width="10%"/>
@@ -141,7 +141,6 @@ export class Orders extends React.Component {
                     </colgroup>
                     <thead>
                         <tr>
-                            <th>ID</th>
                             <th>Assets</th>
                             <th>Start</th>
                             <th>Duration</th>
@@ -159,7 +158,7 @@ export class Orders extends React.Component {
                 <Modal isOpen={!!this.state.showComment} onCancel={this.hideModalComment.bind(this)} backdropClosesModal>
                     <ModalHeader text="View order comment" showCloseButton onClose={this.hideModalComment.bind(this)} />
                     <ModalBody>
-                        {this.state.showComment || ''}
+                        <FormInput rows={20} readOnly placeholder="Textarea" multiline value={this.state.showComment} />
                     </ModalBody>
                 </Modal>
                 <Modal isOpen={!!this.state.removeID} width="small" onCancel={this.hideModalRemove.bind(this)} backdropClosesModal>

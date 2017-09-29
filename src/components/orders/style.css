@@ -46,6 +46,10 @@
     background-color: rgba(244, 67, 54, 0.3);
 }
 
+.row-order-unknown {
+    background-color: rgba(250, 159, 71, 0.3);
+}
+
 .Table td:first-child, .Table th:first-child {
     padding-left: 10px
 }
